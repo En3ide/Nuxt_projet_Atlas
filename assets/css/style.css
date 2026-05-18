@@ -1,0 +1,218 @@
+:root {
+    --color-body: rgb(50, 50, 50);
+    --color-nav: rgb(0, 0, 0);
+    --color-panel: rgb(0, 0, 0);
+    --color-text: white;
+    --color-logo: cyan;
+    --color-link: rgb(30, 30, 30);
+    --color-link-hover: rgb(50, 50, 50);
+    --color-border: rgba(255, 255, 255, 0.05);
+
+    --width-sidebar: 110px;
+
+    --shadow-panel: 0 0 25px rgba(0, 0, 0, 0.35);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+    background-color: var(--color-body);
+    color: var(--color-text);
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Navigation latérale */
+.nav-ul {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: var(--width-sidebar);
+    height: 100vh;
+
+    margin: 0;
+    padding: 20px 0;
+
+    list-style: none;
+
+    background-color: var(--color-nav);
+    border-right: 1px solid var(--color-border);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    overflow-y: auto;
+
+    z-index: 1000;
+}
+
+.il-logo {
+    margin-bottom: 20px;
+}
+
+.div-logo {
+    width: 50px;
+    height: 50px;
+
+    background-color: var(--color-logo);
+    border-radius: 16px;
+
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+}
+
+.nav-space {
+    width: 50px;
+    height: 2px;
+
+    margin: 8px 0 16px;
+
+    background-color: rgb(40, 40, 40);
+}
+
+/* Liens du menu */
+.nav-a {
+    width: 72px;
+    height: 72px;
+
+    color: var(--color-text);
+    background-color: var(--color-link);
+
+    border-radius: 18px;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s ease;
+}
+
+.nav-a:hover {
+    background-color: var(--color-link-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+/* Zone principale */
+.contenu {
+    margin-left: var(--width-sidebar);
+
+    width: calc(100vw - var(--width-sidebar));
+    min-height: 100vh;
+
+    padding: 3rem;
+
+    background-color: var(--color-body);
+    overflow-x: hidden;
+}
+
+/* Grille des panneaux */
+.grid-pannels {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+/* Panneaux */
+.pannel {
+    width: 100%;
+    min-height: 260px;
+
+    padding: 24px;
+    margin: 10px;
+
+    color: var(--color-text);
+    background-color: var(--color-panel);
+
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    box-shadow: var(--shadow-panel);
+
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.pannel h1,
+.pannel h2,
+.pannel h3 {
+    margin-top: 0;
+    color: white;
+}
+
+.pannel p {
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.pannel ul {
+    padding-left: 20px;
+}
+
+.pannel li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Icônes */
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+.material-icons.md-24 {
+    font-size: 24px;
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    :root {
+        --width-sidebar: 85px;
+    }
+
+    .contenu {
+        width: calc(100vw - var(--width-sidebar));
+        padding: 20px;
+    }
+
+    .grid-pannels {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-a {
+        width: 60px;
+        height: 60px;
+    }
+
+    .div-logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-space {
+        width: 45px;
+    }
+}

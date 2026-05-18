@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: rgb(15,15,15);
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .file-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 120px 160px;
+      gap: 16px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .file-row:hover {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .head {
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .name {
+      color: white;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="file-row head">
+    <div>Nom</div>
+    <div>Type</div>
+    <div>Taille</div>
+    <div>Modifié</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">📁 Documents</div>
+    <div>Dossier</div>
+    <div>-</div>
+    <div>Aujourd’hui</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">📁 Videos</div>
+    <div>Dossier</div>
+    <div>-</div>
+    <div>Hier</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">📁 Backups</div>
+    <div>Dossier</div>
+    <div>-</div>
+    <div>12/05/2026</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">📄 rapport-systeme.pdf</div>
+    <div>PDF</div>
+    <div>2.4 MB</div>
+    <div>10/05/2026</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">🎬 camera-entree.mp4</div>
+    <div>Vidéo</div>
+    <div>421 MB</div>
+    <div>08/05/2026</div>
+  </div>
+
+  <div class="file-row">
+    <div class="name">🗜️ archive-home.zip</div>
+    <div>Archive</div>
+    <div>1.8 GB</div>
+    <div>06/05/2026</div>
+  </div>
+
+</body>
+</html>
