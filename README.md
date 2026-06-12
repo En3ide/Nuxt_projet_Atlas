@@ -130,7 +130,7 @@ http://localhost:3000
 
 # 📌 Roadmap
 
-* [ ] Dashboard principal
+* [X] Dashboard principal
 * [ ] Authentification
 * [ ] Découverte des équipements réseau
 * [ ] Gestion des caméras
