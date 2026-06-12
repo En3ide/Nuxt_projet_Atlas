@@ -239,7 +239,7 @@ export default {
           },
 
           {
-            hostname: 'phone-jamel',
+            hostname: 'phone-test',
             ipv4: '192.168.1.42',
             mac: '9C:2A:70:55:18:CC',
             vendor: 'Samsung',
