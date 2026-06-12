@@ -107,173 +107,136 @@
 </template>
 
 <script lang="ts">
-export default {
+type Device = {
+  hostname: string
+  ipv4: string
+  mac: string
+  vendor: string
+  type: string
+  status: string
+}
 
+type SortKey = keyof Device
+type SortDirection = 'asc' | 'desc'
+
+export default {
   name: 'LAN',
 
   data() {
     return {
+      devices: [] as Device[],
 
-      devices: [] as Array<{
-        hostname: string
-        ipv4: string
-        mac: string
-        vendor: string
-        type: string
-        status: string
-      }>,
+      currentSort: 'hostname' as SortKey,
 
-      currentSort: 'hostname',
-
-      sortDirection: 'asc'
+      sortDirection: 'asc' as SortDirection,
     }
   },
 
   computed: {
-
-    sortedDevices(): Array<any> {
-
+    sortedDevices(): Device[] {
       const devices = [...this.devices]
 
-      devices.sort((a, b) => {
-
-        let valueA =
-          a[this.currentSort]?.toLowerCase()
-
-        let valueB =
-          b[this.currentSort]?.toLowerCase()
+      devices.sort((a: Device, b: Device) => {
+        const valueA = a[this.currentSort].toLowerCase()
+        const valueB = b[this.currentSort].toLowerCase()
 
         if (valueA < valueB) {
-          return this.sortDirection === 'asc'
-            ? -1
-            : 1
+          return this.sortDirection === 'asc' ? -1 : 1
         }
 
         if (valueA > valueB) {
-          return this.sortDirection === 'asc'
-            ? 1
-            : -1
+          return this.sortDirection === 'asc' ? 1 : -1
         }
 
         return 0
       })
 
       return devices
-    }
+    },
   },
 
   methods: {
-
     async loadDevices() {
-
       try {
+        const response = await fetch('/api/lan/scan')
 
-        const response =
-          await fetch('/api/lan/scan')
-
-        // API KO
         if (!response.ok) {
           throw new Error('API ERROR')
         }
 
-        const data =
-          await response.json()
+        const data = await response.json()
 
-        // Données invalides
-        if (
-          !Array.isArray(data) ||
-          data.length === 0
-        ) {
+        if (!Array.isArray(data) || data.length === 0) {
           throw new Error('INVALID DATA')
         }
 
         this.devices = data
-
       } catch (error) {
-
         console.error(
           'Impossible de récupérer les appareils réseau :',
           error
         )
 
-        /*
-          FALLBACK FACTICE
-        */
-
         this.devices = [
-
           {
             hostname: 'atlas-server',
             ipv4: '192.168.1.1',
             mac: 'A4:5E:60:11:2F:90',
             vendor: 'Intel',
             type: 'Serveur / NAS',
-            status: 'ONLINE'
+            status: 'ONLINE',
           },
-
           {
             hostname: 'desktop-main',
             ipv4: '192.168.1.10',
             mac: '34:97:F6:8A:21:BC',
             vendor: 'Realtek',
             type: 'PC',
-            status: 'ONLINE'
+            status: 'ONLINE',
           },
-
           {
             hostname: 'raspberrypi-home',
             ipv4: '192.168.1.20',
             mac: 'B8:27:EB:42:19:FA',
             vendor: 'Raspberry Pi',
             type: 'IoT',
-            status: 'ONLINE'
+            status: 'ONLINE',
           },
-
           {
             hostname: 'camera-entry',
             ipv4: '192.168.1.31',
             mac: 'E0:50:8B:91:42:AA',
             vendor: 'TP-Link',
             type: 'Caméra IP',
-            status: 'ONLINE'
+            status: 'ONLINE',
           },
-
           {
             hostname: 'phone-test',
             ipv4: '192.168.1.42',
             mac: '9C:2A:70:55:18:CC',
             vendor: 'Samsung',
             type: 'Smartphone',
-            status: 'OFFLINE'
-          }
+            status: 'OFFLINE',
+          },
         ]
       }
     },
 
-    sortBy(field: string) {
-
+    sortBy(field: SortKey) {
       if (this.currentSort === field) {
-
-        this.sortDirection =
-          this.sortDirection === 'asc'
-            ? 'desc'
-            : 'asc'
-
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
       } else {
-
         this.currentSort = field
-
         this.sortDirection = 'asc'
       }
-    }
+    },
   },
 
   mounted() {
     this.loadDevices()
-  }
+  },
 }
 </script>
-
 <style scoped>
 
 .lan-pannel {

@@ -51,6 +51,7 @@
 
 <script lang="ts">
 import { defineComponent, nextTick } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 import Hls from 'hls.js'
 
 type Camera = {
@@ -131,17 +132,13 @@ export default defineComponent({
   methods: {
 
     setVideoRef(
-      el: Element | null,
-      name: string
-    ) {
-
-      if (
-        el instanceof HTMLVideoElement
-      ) {
-
-        this.videoRefs[name] = el
-      }
-    },
+  el: Element | ComponentPublicInstance | null,
+  name: string
+) {
+  if (el instanceof HTMLVideoElement) {
+    this.videoRefs[name] = el
+  }
+},
 
     initVideos() {
 

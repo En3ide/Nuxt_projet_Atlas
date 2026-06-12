@@ -70,8 +70,18 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
+type FileItem = {
+  name: string
+  type: string
+  size: string
+  modified: string
+  icon: string
+}
+
+type SortDirection = 'asc' | 'desc'
+type SortKey = keyof FileItem
+
 export default {
   name: 'Cloud',
 
@@ -79,38 +89,27 @@ export default {
     return {
       currentPath: 'Répertoire de l’application',
 
-      files: [] as Array<{
-        name: string
-        type: string
-        size: string
-        modified: string
-        icon: string
-      }>,
+      files: [] as FileItem[],
 
-      currentSort: 'name',
+      currentSort: 'name' as SortKey,
 
-      sortDirection: 'asc'
+      sortDirection: 'asc' as SortDirection,
     }
   },
 
   computed: {
-    sortedFiles(): Array<any> {
-
+    sortedFiles(): FileItem[] {
       const files = [...this.files]
 
-      files.sort((a, b) => {
+      files.sort((a: FileItem, b: FileItem) => {
+        let valueA: string | number = a[this.currentSort]
+        let valueB: string | number = b[this.currentSort]
 
-        let valueA: any = a[this.currentSort]
-        let valueB: any = b[this.currentSort]
-
-        //taille
         if (this.currentSort === 'size') {
-
           valueA = this.parseSize(valueA)
           valueB = this.parseSize(valueB)
         }
 
-        //texte
         if (typeof valueA === 'string') {
           valueA = valueA.toLowerCase()
         }
@@ -131,37 +130,25 @@ export default {
       })
 
       return files
-    }
+    },
   },
 
   methods: {
-
     async loadFiles() {
-
       const response = await fetch('/api/files')
-
       this.files = await response.json()
     },
 
-    sortBy(field: string) {
-
+    sortBy(field: SortKey) {
       if (this.currentSort === field) {
-
-        this.sortDirection =
-          this.sortDirection === 'asc'
-            ? 'desc'
-            : 'asc'
-
+        this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
       } else {
-
         this.currentSort = field
-
         this.sortDirection = 'asc'
       }
     },
 
     parseSize(size: string): number {
-
       if (size === '-') return 0
 
       const value = parseFloat(size)
@@ -174,15 +161,20 @@ export default {
         return value * 1024
       }
 
+      if (size.includes('KB')) {
+        return value
+      }
+
       return value
-    }
+    },
   },
 
   mounted() {
     this.loadFiles()
-  }
+  },
 }
 </script>
+
 
 <style scoped>
 .cloud-pannel {

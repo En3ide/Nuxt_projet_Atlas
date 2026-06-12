@@ -122,7 +122,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('resize', resizeTerminal)
 
-  socket?.close()
+  ;(socket as WebSocket | null)?.close()
   term?.dispose()
 })
 
