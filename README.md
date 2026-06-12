@@ -1,75 +1,142 @@
-# Nuxt Minimal Starter
+# Atlas
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Atlas est une plateforme de supervision et de gestion d'infrastructure domestique.
 
-## Setup
+L'objectif est de centraliser l'ensemble des services et équipements d'un réseau domestique au sein d'une interface web unique, moderne et sécurisée.
 
-Make sure to install dependencies:
+---
+
+# 🚀 Fonctionnalités
+
+Atlas permet de superviser et contrôler :
+
+* Les appareils du réseau local
+* Les caméras de surveillance
+* Les capteurs environnementaux (température, humidité, etc.)
+* Les services auto-hébergés
+* L'accès au NAS local
+* Les ressources système des serveurs
+* Un terminal distant sécurisé
+* Un dashboard global de la maison
+
+---
+
+# 🎯 Objectif du projet
+
+Créer un véritable **Home Infrastructure Control Center** permettant de visualiser, surveiller et administrer l'ensemble de l'infrastructure d'une maison depuis une seule interface.
+
+Atlas vise à fournir :
+
+* Une vue centralisée de tous les équipements
+* Une supervision en temps réel
+* Une gestion simplifiée des services locaux
+* Une architecture extensible pour l'ajout futur de nouveaux modules
+
+---
+
+# 🏗️ Architecture
+
+Le projet est organisé autour d'une architecture Frontend / Backend séparée.
+
+## Frontend
+
+Le frontend est développé avec Nuxt 3 et fournit :
+
+* Interface utilisateur
+* Dashboard
+* Authentification
+* Visualisation des données
+* Gestion des équipements
+
+### Stack
+
+* Nuxt 3
+* Vue 3
+* TypeScript
+* Pinia
+* Tailwind CSS
+
+## Backend
+
+Le backend centralise la logique métier et l'accès aux ressources de l'infrastructure.
+
+### Stack
+
+* NestJS
+* TypeScript
+* WebSockets
+* REST API
+
+## Base de données
+
+* PostgreSQL
+
+---
+
+# 📡 Fonctionnalités temps réel
+
+Atlas utilise les WebSockets pour :
+
+* La supervision en temps réel
+* Les notifications
+* La mise à jour des capteurs
+* Le suivi de l'état des équipements
+
+---
+
+# 🔒 Sécurité
+
+* Authentification utilisateur
+* Gestion des rôles et permissions
+* Sessions sécurisées
+* Communication chiffrée
+* Journalisation des événements
+
+---
+
+# 🐳 Déploiement
+
+Le projet est conçu pour être déployé via Docker afin de simplifier l'installation et la maintenance.
+
+---
+
+# ⚙️ Installation
+
+## Prérequis
+
+* Node.js 20+
+* PostgreSQL
+* Docker (optionnel)
+
+## Installation
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Lancement du serveur de développement
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+Le frontend sera accessible à l'adresse :
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+```text
+http://localhost:3000
 ```
 
-Locally preview production build:
+---
 
-```bash
-# npm
-npm run preview
+# 📌 Roadmap
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+* [ ] Dashboard principal
+* [ ] Authentification
+* [ ] Découverte des équipements réseau
+* [ ] Gestion des caméras
+* [ ] Monitoring des serveurs
+* [ ] Gestion du NAS
+* [ ] Terminal distant
+* [ ] Notifications temps réel
+* [ ] Gestion multi-utilisateurs
+* [ ] Déploiement Docker
