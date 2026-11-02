@@ -1,7 +1,7 @@
 <template>
   <ul class="nav-ul">
     <li v-for="item in navItems" :key="item.icon">
-      <NuxtLink :to="item.route" class="nav-a root-a">
+      <NuxtLink :to="item.route" class="nav-a root-a" :aria-label="item.icon === 'history' ? 'Historique' : item.icon" :title="item.icon === 'history' ? 'Historique' : item.icon">
         <span class="material-icons md-light md-24">{{ item.icon }}</span>
       </NuxtLink>
     </li>
@@ -28,6 +28,7 @@ export default defineComponent({
       navItems: [
         { icon: 'stream', route: '/' },
         { icon: 'dashboard', route: '/dashboard' },
+        { icon: 'history', route: '/history' },
         { icon: 'cloud', route: '/cloud' },
         { icon: 'terminal', route: '/terminal' },
         //{ icon: 'school', route: '/school' },

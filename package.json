@@ -8,7 +8,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "terminal": "node server-ssh-terminal.js"
+    "terminal": "node server-ssh-terminal.js",
+    "test:terminal": "node --test test/terminal.test.mjs"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.11.0",
@@ -17,6 +18,7 @@
     "dotenv": "^17.4.2",
     "fast-xml-parser": "^5.8.0",
     "hls.js": "^1.6.16",
+    "node-pty": "1.2.0-beta.18",
     "nuxt": "^3.21.5",
     "ssh2": "^1.17.0",
     "vue": "^3.5.34",

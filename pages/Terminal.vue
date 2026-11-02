@@ -1,7 +1,7 @@
 <template>
   <div class="contenu">
     <div class="pannel terminal-pannel">
-      <SshTerminal />
+      <ClientOnly><SshTerminal /><template #fallback><p class="loading">Chargement du terminal…</p></template></ClientOnly>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@ import SshTerminal from '~/components/SshTerminal.vue'
   width: 100%;
   max-width: 100%;
 
-  min-height: 85vh;
+  min-height: 0;
+  margin: 0;
 
   padding: 0;
   overflow: hidden;
@@ -24,4 +25,5 @@ import SshTerminal from '~/components/SshTerminal.vue'
 
   box-sizing: border-box;
 }
+.loading { padding: 24px; }
 </style>
